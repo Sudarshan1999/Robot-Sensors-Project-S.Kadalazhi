@@ -24,14 +24,15 @@ public class ReportAccelerometer extends Command {
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-    	x=accel.getX();
-    	y=accel.getY();
-    	z=accel.getZ();
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
+    	x=accel.getX();
+    	y=accel.getY();
+    	z=accel.getZ();
     	SmartDashboard.putDouble("Accelerometer X", x);
     	SmartDashboard.putDouble("Accelerometer Y", y);
     	SmartDashboard.putDouble("Accelerometer Z", z);
