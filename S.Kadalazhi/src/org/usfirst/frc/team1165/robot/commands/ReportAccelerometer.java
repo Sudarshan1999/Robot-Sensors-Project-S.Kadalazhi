@@ -31,12 +31,9 @@ public class ReportAccelerometer extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		x = Robot.accelerometer.getX();
-		y = Robot.accelerometer.getY();
-		z = Robot.accelerometer.getZ();
-		SmartDashboard.putNumber("Accelerometer X", x);
-		SmartDashboard.putNumber("Accelerometer Y", y);
-		SmartDashboard.putNumber("Accelerometer Z", z);
+		SmartDashboard.putNumber("Accelerometer X",  Robot.accelerometer.getX());
+		SmartDashboard.putNumber("Accelerometer Y",  Robot.accelerometer.getX());
+		SmartDashboard.putNumber("Accelerometer Z",  Robot.accelerometer.getX());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
