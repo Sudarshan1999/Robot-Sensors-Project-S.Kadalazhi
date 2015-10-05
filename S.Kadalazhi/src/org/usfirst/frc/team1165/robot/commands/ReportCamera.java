@@ -2,6 +2,7 @@ package org.usfirst.frc.team1165.robot.commands;
 
 import org.usfirst.frc.team1165.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -23,7 +24,15 @@ public class ReportCamera extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		Robot.camera.getFrame();
+		try
+		{
+			Robot.camera.getFrame();
+		} catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			SmartDashboard.putString(" File Not found","");
+
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

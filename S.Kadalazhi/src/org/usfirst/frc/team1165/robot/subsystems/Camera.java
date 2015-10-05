@@ -1,5 +1,9 @@
 package org.usfirst.frc.team1165.robot.subsystems;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 import org.usfirst.frc.team1165.robot.Robot;
 import org.usfirst.frc.team1165.robot.commands.ReportCamera;
 
@@ -11,6 +15,7 @@ import com.ni.vision.NIVision.ShapeMode;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -35,7 +40,6 @@ public class Camera extends Subsystem implements Runnable
 		NIVision.IMAQdxConfigureGrab(session);
 		NIVision.IMAQdxStartAcquisition(session);
 
-
 		if (runMode)
 			new Thread(this).start();
 	}
@@ -46,7 +50,7 @@ public class Camera extends Subsystem implements Runnable
 			setDefaultCommand(new ReportCamera());
 	}
 
-	public void getFrame()
+	public void getFrame()throws Exception
 	{
 		NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
 		// the camera name (ex "cam0") can be found through the roborio web
@@ -54,6 +58,22 @@ public class Camera extends Subsystem implements Runnable
 		// instantiate the command used for the autonomous period
 		NIVision.IMAQdxGrab(session, frame, 1);
 		CameraServer.getInstance().setImage(frame);
+		// Make sure the directory that will hold the data files exists:
+		new File("/home/lvuser/data").mkdirs();
+
+		// Dump the supported video modes to a file:
+		PrintWriter pw = new PrintWriter("/home/lvuser/data/NIVision_VideoModes.txt");
+		NIVision.dxEnumerateVideoModesResult result = NIVision.IMAQdxEnumerateVideoModes(session);
+		pw.println("Current: \"" + result.videoModeArray[result.currentMode].Name + '"');
+		pw.println();
+		for (NIVision.IMAQdxEnumItem item : result.videoModeArray)
+		{
+			pw.println('"' + item.Name + '"');
+		}
+		pw.close();
+
+		// Dump the supported vision attributes to a file:
+		NIVision.IMAQdxWriteAttributes(session, "/home/lvuser/data/NIVision_Attributes.txt");
 	}
 
 	@Override
@@ -61,7 +81,14 @@ public class Camera extends Subsystem implements Runnable
 	{
 		while(true)
 		{
-		getFrame();
+		try
+		{
+			getFrame();
+		} catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			SmartDashboard.putString(" File Not found","");
+		}
 		Timer.delay(0.05);
 		}
 	}
