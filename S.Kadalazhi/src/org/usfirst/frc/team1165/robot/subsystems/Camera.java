@@ -33,9 +33,11 @@ public class Camera extends Subsystem implements Runnable
 		// interface
 		session = NIVision.IMAQdxOpenCamera("cam0", NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 		NIVision.IMAQdxConfigureGrab(session);
+		NIVision.IMAQdxStartAcquisition(session);
+
 
 		if (runMode)
-			new Thread(Robot.camera).start();
+			new Thread(this).start();
 	}
 
 	public void initDefaultCommand()
@@ -50,32 +52,17 @@ public class Camera extends Subsystem implements Runnable
 		// the camera name (ex "cam0") can be found through the roborio web
 		// interface
 		// instantiate the command used for the autonomous period
-		NIVision.IMAQdxStartAcquisition(session);
-
 		NIVision.IMAQdxGrab(session, frame, 1);
-		NIVision.imaqDrawShapeOnImage(frame, frame, rect, DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
-
 		CameraServer.getInstance().setImage(frame);
-
-		/** robot code here! **/
-		Timer.delay(0.005); // wait for a motor update time
 	}
 
 	@Override
 	public void run()
 	{
-		NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
-		// the camera name (ex "cam0") can be found through the roborio web
-		// interface
-		// instantiate the command used for the autonomous period
-		NIVision.IMAQdxStartAcquisition(session);
-
-		NIVision.IMAQdxGrab(session, frame, 1);
-		NIVision.imaqDrawShapeOnImage(frame, frame, rect, DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
-
-		CameraServer.getInstance().setImage(frame);
-
-		/** robot code here! **/
-		Timer.delay(0.005); // wait for a motor update time
+		while(true)
+		{
+		getFrame();
+		Timer.delay(0.05);
+		}
 	}
 }
