@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team1165.robot.subsystems.Accelerometer;
 import org.usfirst.frc.team1165.robot.subsystems.Camera;
+
+import com.ni.vision.NIVision.Image;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -18,9 +20,12 @@ public class Robot extends IterativeRobot
 {
 
 	public static final Accelerometer accelerometer = new Accelerometer();
-	public static final Camera camera = new Camera();
+	public static final Camera camera = new Camera(RobotMap.cameraMode);
 	public static OI oi;
-
+	//For camera
+	public static int session;
+	static Image frame;
+	
 	Command autonomousCommand;
 
 	/**

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1165.robot.subsystems;
 
+import org.usfirst.frc.team1165.robot.Robot;
 import org.usfirst.frc.team1165.robot.commands.ReportCamera;
 
 import com.ni.vision.NIVision;
@@ -14,31 +15,54 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Camera extends Subsystem
+public class Camera extends Subsystem implements Runnable
 {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public static int session;
 	static Image frame;
+	public boolean runMode;
 
-	public Camera()
+	public Camera(boolean runMode)
 	{
+		this.runMode = runMode;
 		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 
 		// the camera name (ex "cam0") can be found through the roborio web
 		// interface
 		session = NIVision.IMAQdxOpenCamera("cam0", NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 		NIVision.IMAQdxConfigureGrab(session);
+
+		if (runMode)
+			new Thread(Robot.camera).start();
 	}
 
 	public void initDefaultCommand()
 	{
-		// Set the default command for a subsystem here.
-		setDefaultCommand(new ReportCamera());
+		if (runMode == false)
+			setDefaultCommand(new ReportCamera());
 	}
 
 	public void getFrame()
+	{
+		NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
+		// the camera name (ex "cam0") can be found through the roborio web
+		// interface
+		// instantiate the command used for the autonomous period
+		NIVision.IMAQdxStartAcquisition(session);
+
+		NIVision.IMAQdxGrab(session, frame, 1);
+		NIVision.imaqDrawShapeOnImage(frame, frame, rect, DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
+
+		CameraServer.getInstance().setImage(frame);
+
+		/** robot code here! **/
+		Timer.delay(0.005); // wait for a motor update time
+	}
+
+	@Override
+	public void run()
 	{
 		NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
 		// the camera name (ex "cam0") can be found through the roborio web
