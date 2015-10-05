@@ -12,7 +12,6 @@ import org.usfirst.frc.team1165.robot.Robot;
  */
 public class ReportAccelerometer extends Command
 {
-	BuiltInAccelerometer accel = new BuiltInAccelerometer();
 	private static double x;
 	private static double y;
 	private static double z;
@@ -32,12 +31,12 @@ public class ReportAccelerometer extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		x = accel.getX();
-		y = accel.getY();
-		z = accel.getZ();
-		SmartDashboard.putDouble("Accelerometer X", x);
-		SmartDashboard.putDouble("Accelerometer Y", y);
-		SmartDashboard.putDouble("Accelerometer Z", z);
+		x = Robot.accelerometer.getX();
+		y = Robot.accelerometer.getY();
+		z = Robot.accelerometer.getZ();
+		SmartDashboard.putNumber("Accelerometer X", x);
+		SmartDashboard.putNumber("Accelerometer Y", y);
+		SmartDashboard.putNumber("Accelerometer Z", z);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
