@@ -17,21 +17,19 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
 public class Camera extends Subsystem implements Runnable
 {
-
+	public enum CameraMode {SUBSYSTEM,THREAD}
+	private CameraMode cameraMode;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public static int session;
 	static Image frame;
 	public boolean runMode;
 
-	public Camera(boolean runMode)
+	public Camera(CameraMode cameraMode)
 	{
-		this.runMode = runMode;
+		this.cameraMode = cameraMode;
 		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 
 		// the camera name (ex "cam0") can be found through the roborio web
@@ -40,13 +38,13 @@ public class Camera extends Subsystem implements Runnable
 		NIVision.IMAQdxConfigureGrab(session);
 		NIVision.IMAQdxStartAcquisition(session);
 
-		if (runMode)
+		if (cameraMode == CameraMode.THREAD)
 			new Thread(this).start();
 	}
 
 	public void initDefaultCommand()
 	{
-		if (runMode == false)
+		if (cameraMode == CameraMode.SUBSYSTEM)
 			setDefaultCommand(new ReportCamera());
 	}
 

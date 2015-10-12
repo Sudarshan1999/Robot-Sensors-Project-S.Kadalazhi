@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team1165.robot.subsystems.RoboRioAccelerometer;
+import org.usfirst.frc.team1165.robot.subsystems.Camera.CameraMode;
 import org.usfirst.frc.team1165.robot.subsystems.Camera;
 
 import com.ni.vision.NIVision.Image;
@@ -19,7 +20,7 @@ public class Robot extends IterativeRobot
 {
 
 	public static final RoboRioAccelerometer roboRioAccelerometer = new RoboRioAccelerometer();
-	public static final Camera camera = new Camera(RobotMap.cameraMode);
+	public static final Camera camera = new Camera(CameraMode.THREAD);
 	public static OI oi;
 	//For camera
 	public static int session;
