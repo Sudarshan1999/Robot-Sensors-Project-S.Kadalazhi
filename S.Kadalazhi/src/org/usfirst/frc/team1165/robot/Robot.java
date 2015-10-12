@@ -21,7 +21,7 @@ public class Robot extends IterativeRobot
 {
 
 	public static final RoboRioAccelerometer roboRioAccelerometer = new RoboRioAccelerometer();
-	public static final Camera camera = new Camera(CameraMode.THREAD);
+	//public static final Camera camera = new Camera(CameraMode.THREAD);
 	public static final AbsoluteEncoder absoluteEncoder = new AbsoluteEncoder();
 	
 	public static OI oi;

@@ -13,7 +13,7 @@ public class ReportCamera extends Command
 	public ReportCamera()
 	{
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.camera);
+		//requires(Robot.camera);
 	}
 
 	// Called just before this Command runs the first time
@@ -26,7 +26,7 @@ public class ReportCamera extends Command
 	{
 		try
 		{
-			Robot.camera.getFrame();
+			//Robot.camera.getFrame();
 		} catch (Exception e)
 		{
 			// TODO Auto-generated catch block
