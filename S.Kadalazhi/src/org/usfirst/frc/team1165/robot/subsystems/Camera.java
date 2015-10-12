@@ -50,7 +50,7 @@ public class Camera extends Subsystem implements Runnable
 			setDefaultCommand(new ReportCamera());
 	}
 
-	public void getFrame()throws Exception
+	public void getFrame() throws Exception
 	{
 		NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
 		// the camera name (ex "cam0") can be found through the roborio web
@@ -58,6 +58,8 @@ public class Camera extends Subsystem implements Runnable
 		// instantiate the command used for the autonomous period
 		NIVision.IMAQdxGrab(session, frame, 1);
 		CameraServer.getInstance().setImage(frame);
+		
+		//Extra Credit Stuff STARTS HERE
 		// Make sure the directory that will hold the data files exists:
 		new File("/home/lvuser/data").mkdirs();
 
@@ -79,17 +81,18 @@ public class Camera extends Subsystem implements Runnable
 	@Override
 	public void run()
 	{
-		while(true)
+		while (true)
 		{
-		try
-		{
-			getFrame();
-		} catch (Exception e)
-		{
-			// TODO Auto-generated catch block
-			SmartDashboard.putString(" File Not found","");
-		}
-		Timer.delay(0.05);
+			try
+			{
+				getFrame();
+			} 
+			catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				SmartDashboard.putString(" File Not found", "");
+			}
+			Timer.delay(0.05);
 		}
 	}
 }

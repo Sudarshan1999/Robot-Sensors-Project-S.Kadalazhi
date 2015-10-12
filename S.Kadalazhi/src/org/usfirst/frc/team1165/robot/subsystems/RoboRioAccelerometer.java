@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class Accelerometer extends Subsystem 
+public class RoboRioAccelerometer extends Subsystem 
 {
 	BuiltInAccelerometer accel = new BuiltInAccelerometer();
 	private static double x;

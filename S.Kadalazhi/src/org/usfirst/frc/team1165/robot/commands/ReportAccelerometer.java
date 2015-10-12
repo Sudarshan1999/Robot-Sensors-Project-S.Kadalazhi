@@ -19,7 +19,7 @@ public class ReportAccelerometer extends Command
 	public ReportAccelerometer()
 	{
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.accelerometer);
+		requires(Robot.roboRioAccelerometer);
 	}
 
 	// Called just before this Command runs the first time
@@ -31,9 +31,9 @@ public class ReportAccelerometer extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		SmartDashboard.putNumber("Accelerometer X",  Robot.accelerometer.getX());
-		SmartDashboard.putNumber("Accelerometer Y",  Robot.accelerometer.getY());
-		SmartDashboard.putNumber("Accelerometer Z",  Robot.accelerometer.getZ());
+		SmartDashboard.putNumber("Accelerometer X",  Robot.roboRioAccelerometer.getX());
+		SmartDashboard.putNumber("Accelerometer Y",  Robot.roboRioAccelerometer.getY());
+		SmartDashboard.putNumber("Accelerometer Z",  Robot.roboRioAccelerometer.getZ());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

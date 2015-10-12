@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team1165.robot.subsystems.Accelerometer;
+import org.usfirst.frc.team1165.robot.subsystems.RoboRioAccelerometer;
 import org.usfirst.frc.team1165.robot.subsystems.Camera;
 
 import com.ni.vision.NIVision.Image;
@@ -18,7 +18,7 @@ import com.ni.vision.NIVision.Image;
 public class Robot extends IterativeRobot
 {
 
-	public static final Accelerometer accelerometer = new Accelerometer();
+	public static final RoboRioAccelerometer roboRioAccelerometer = new RoboRioAccelerometer();
 	public static final Camera camera = new Camera(RobotMap.cameraMode);
 	public static OI oi;
 	//For camera
