@@ -8,5 +8,6 @@ package org.usfirst.frc.team1165.robot;
  */
 public class RobotMap
 {
-	public final static boolean cameraMode = true;
+	public  final static int ABSOLUTE_ENCODER_PORT = 0;
+	
 }

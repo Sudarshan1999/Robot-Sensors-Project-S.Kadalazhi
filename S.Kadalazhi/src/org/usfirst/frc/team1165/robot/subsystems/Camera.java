@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Camera extends Subsystem implements Runnable
 {
 	public enum CameraMode {SUBSYSTEM,THREAD}
+	
 	private CameraMode cameraMode;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
