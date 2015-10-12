@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AbsoluteEncoder extends Subsystem
 {
-	 static AnalogPotentiometer analogPotentiometer = new AnalogPotentiometer(RobotMap.ABSOLUTE_ENCODER_PORT,360,30);
+	 static AnalogPotentiometer analogPotentiometer = new AnalogPotentiometer(RobotMap.ABSOLUTE_ENCODER_PORT,360,0);
 	 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
