@@ -5,6 +5,7 @@ import org.usfirst.frc.team1165.robot.commands.ReportAbsoluteEncoder;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.ControllerPower;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -30,5 +31,6 @@ public class AbsoluteEncoder extends Subsystem
 		SmartDashboard.putNumber("Voltage Value", analogInput.getVoltage());
 		SmartDashboard.putNumber("ADC Value", analogInput.getValue());
 		SmartDashboard.putNumber("Absolute Encoder Value",analogPotentiometer.get());
+		SmartDashboard.putNumber("5 Volt Rail", ControllerPower.getVoltage5V());
 	}
 }
