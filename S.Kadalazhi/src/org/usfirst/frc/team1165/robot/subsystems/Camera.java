@@ -3,21 +3,14 @@ package org.usfirst.frc.team1165.robot.subsystems;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-
-import org.usfirst.frc.team1165.robot.Robot;
-import org.usfirst.frc.team1165.robot.commands.ReportCamera;
-
+import org.usfirst.frc.team1165.robot.commands.Reporter;
 import com.ni.vision.NIVision;
-import com.ni.vision.NIVision.DrawMode;
 import com.ni.vision.NIVision.Image;
-import com.ni.vision.NIVision.ShapeMode;
-
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Camera extends Subsystem implements Runnable
+public class Camera extends ReportableSubsystem implements Runnable
 {
 	public enum CameraMode {SUBSYSTEM,THREAD}
 	
@@ -46,10 +39,29 @@ public class Camera extends Subsystem implements Runnable
 	public void initDefaultCommand()
 	{
 		if (cameraMode == CameraMode.SUBSYSTEM)
-			setDefaultCommand(new ReportCamera());
+			setDefaultCommand(new Reporter(this));
 	}
 
-	public void getFrame() throws Exception
+	@Override
+	public void run()
+	{
+		while (true)
+		{
+			try
+			{
+				report();
+			} 
+			catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				SmartDashboard.putString(" File Not found", "");
+			}
+			Timer.delay(0.05);
+		}
+	}
+
+	@Override
+	public void report()
 	{
 		NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
 		// the camera name (ex "cam0") can be found through the roborio web
@@ -63,7 +75,15 @@ public class Camera extends Subsystem implements Runnable
 		new File("/home/lvuser/data").mkdirs();
 
 		// Dump the supported video modes to a file:
-		PrintWriter pw = new PrintWriter("/home/lvuser/data/NIVision_VideoModes.txt");
+		PrintWriter pw = null;
+		try
+		{
+			pw = new PrintWriter("/home/lvuser/data/NIVision_VideoModes.txt");
+		} catch (FileNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		NIVision.dxEnumerateVideoModesResult result = NIVision.IMAQdxEnumerateVideoModes(session);
 		pw.println("Current: \"" + result.videoModeArray[result.currentMode].Name + '"');
 		pw.println();
@@ -75,23 +95,6 @@ public class Camera extends Subsystem implements Runnable
 
 		// Dump the supported vision attributes to a file:
 		NIVision.IMAQdxWriteAttributes(session, "/home/lvuser/data/NIVision_Attributes.txt");
-	}
-
-	@Override
-	public void run()
-	{
-		while (true)
-		{
-			try
-			{
-				getFrame();
-			} 
-			catch (Exception e)
-			{
-				// TODO Auto-generated catch block
-				SmartDashboard.putString(" File Not found", "");
-			}
-			Timer.delay(0.05);
-		}
+		
 	}
 }
