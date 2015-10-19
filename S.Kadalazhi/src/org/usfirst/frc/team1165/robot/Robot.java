@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team1165.robot.subsystems.RoboRioAccelerometer;
+import org.usfirst.frc.team1165.robot.subsystems.VexUltrasonicSensor;
 import org.usfirst.frc.team1165.robot.subsystems.Camera.CameraMode;
 import org.usfirst.frc.team1165.robot.subsystems.AbsoluteEncoder;
 import org.usfirst.frc.team1165.robot.subsystems.Camera;
@@ -23,7 +24,7 @@ public class Robot extends IterativeRobot
 	public static final RoboRioAccelerometer roboRioAccelerometer = new RoboRioAccelerometer();
 	//public static final Camera camera = new Camera(CameraMode.THREAD);
 	public static final AbsoluteEncoder absoluteEncoder = new AbsoluteEncoder();
-	
+	public static final VexUltrasonicSensor vexUtrasonicSensor= new VexUltrasonicSensor();
 	public static OI oi;
 	//For camera
 	public static int session;

@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Reporter extends Command
 {
 	private ReportableSubsystem reportable ;
-	public Reporter(ReportableSubsystem reportable )
+	public Reporter(ReportableSubsystem reportable)
 	{
 		requires(reportable);
 		this.reportable = reportable;

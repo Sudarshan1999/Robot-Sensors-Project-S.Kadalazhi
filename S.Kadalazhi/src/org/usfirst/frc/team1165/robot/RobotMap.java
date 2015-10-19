@@ -10,5 +10,5 @@ public class RobotMap
 {
 	public  final static int ABSOLUTE_ENCODER_PORT = 0;
 	public  final static int VEX_ULTRASONIC_IN_CHANNEL = 0;
-	public  final static int VEX_ULTRASONIC_OUT_CHANNEL = 0;	
+	public  final static int VEX_ULTRASONIC_OUT_CHANNEL = 1;	
 }
