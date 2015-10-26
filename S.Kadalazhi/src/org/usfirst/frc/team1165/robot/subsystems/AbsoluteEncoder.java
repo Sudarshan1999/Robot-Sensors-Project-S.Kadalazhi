@@ -15,8 +15,6 @@ public class AbsoluteEncoder extends ReportableSubsystem
 {
 	 AnalogInput analogInput =new AnalogInput(RobotMap.ABSOLUTE_ENCODER_PORT);
 	 AnalogPotentiometer analogPotentiometer = new AnalogPotentiometer(analogInput,360,0);
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
 
 	public void initDefaultCommand()
 	{
