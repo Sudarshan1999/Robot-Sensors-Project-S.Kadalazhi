@@ -45,7 +45,6 @@ public class MaxBotixRangeFinder extends ReportableSubsystem implements Runnable
 				: 1024;		// 1024 cm
 			analogPotentiometer = new AnalogPotentiometer(analogInput, analogRangeCm, 0.0);
 		}
-			
 	}
 	
 	public void initDefaultCommand()
