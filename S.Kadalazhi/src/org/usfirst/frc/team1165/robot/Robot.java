@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1165.robot;
 
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -8,6 +10,8 @@ import org.usfirst.frc.team1165.robot.subsystems.RoboRioAccelerometer;
 import org.usfirst.frc.team1165.robot.subsystems.MaxBotixRangeFinder;
 import org.usfirst.frc.team1165.robot.subsystems.MaxBotixRangeFinder.SensorType;
 import org.usfirst.frc.team1165.robot.subsystems.AbsoluteEncoder;
+import org.usfirst.frc.team1165.robot.subsystems.IMUDigitalComboBoard;
+
 import com.ni.vision.NIVision.Image;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,9 +25,10 @@ public class Robot extends IterativeRobot
 
 	public static final RoboRioAccelerometer roboRioAccelerometer = new RoboRioAccelerometer();
 	//public static final Camera camera = new Camera(CameraMode.THREAD);
-	public static final AbsoluteEncoder absoluteEncoder = new AbsoluteEncoder();
+	//public static final AbsoluteEncoder absoluteEncoder = new AbsoluteEncoder();
 	//public static final VexUltrasonicSensor vexUtrasonicSensor= new VexUltrasonicSensor();
-	public static MaxBotixRangeFinder maxBotixRangeFinder = new MaxBotixRangeFinder(SensorType.mb1200,RobotMap.MaxBotix_Serial_Port,RobotMap.MaxBotix_Analog_Port);
+	//public static MaxBotixRangeFinder maxBotixRangeFinder = new MaxBotixRangeFinder(SensorType.mb1200,RobotMap.MaxBotix_Serial_Port,RobotMap.MaxBotix_Analog_Port);
+	public static final IMUDigitalComboBoard imuDigitalComboBoard = new IMUDigitalComboBoard(I2C.Port.kOnboard, new DigitalInput(RobotMap.gyroInterruptChannel));
 	public static OI oi;
 	//For camera
 	public static int session;

@@ -12,12 +12,20 @@ import edu.wpi.first.wpilibj.SerialPort.Port;
  */
 public class RobotMap
 {
+	//Absolute Encoder port
 	public  final static int ABSOLUTE_ENCODER_PORT = 0;
+	
+	//Vex Ultrasonic Channel
 	public  final static int VEX_ULTRASONIC_IN_CHANNEL = 0;
 	public  final static int VEX_ULTRASONIC_OUT_CHANNEL = 1;
+	
+	//Maxbotix Sensor
 	public  final static int BAUD_RATE = 9600;
 	public  final static Port MAXBOTIX_SENSOR_PORT_NUMBER = SerialPort.Port.kOnboard;
 	public  final static int MAXBOTIX_ANALOG_PORT_NUMBER = 3;
 	public  final static SerialPort MaxBotix_Serial_Port = new SerialPort(BAUD_RATE,MAXBOTIX_SENSOR_PORT_NUMBER);
 	public  final static AnalogInput MaxBotix_Analog_Port = new AnalogInput(MAXBOTIX_ANALOG_PORT_NUMBER);
+	
+	//Gyro Interrupt
+	public static int gyroInterruptChannel = 9;
 }
