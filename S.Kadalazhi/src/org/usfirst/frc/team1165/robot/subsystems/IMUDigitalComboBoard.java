@@ -53,6 +53,9 @@ public class IMUDigitalComboBoard extends ReportableSubsystem
 		}
 		if(null != gyro)
 		{
+			SmartDashboard.putNumber("X Gyro", xGyro.getAngle());
+			SmartDashboard.putNumber("Y Gyro", yGyro.getAngle());
+			SmartDashboard.putNumber("Z Gyro", zGyro.getAngle());
 			SmartDashboard.putNumber("IMU_Board_Gyroscope", gyro.getMeasuredSampleRate());
 		}
 	}
