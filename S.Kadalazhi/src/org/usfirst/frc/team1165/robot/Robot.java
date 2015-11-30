@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team1165.robot.subsystems.RoboRioAccelerometer;
 import org.usfirst.frc.team1165.robot.subsystems.MaxBotixRangeFinder;
 import org.usfirst.frc.team1165.robot.subsystems.MaxBotixRangeFinder.SensorType;
+import org.usfirst.frc.team1165.robot.subsystems.PidDemo;
 import org.usfirst.frc.team1165.robot.subsystems.AbsoluteEncoder;
 import org.usfirst.frc.team1165.robot.subsystems.IMUDigitalComboBoard;
 
@@ -25,10 +26,11 @@ public class Robot extends IterativeRobot
 
 	public static final RoboRioAccelerometer roboRioAccelerometer = new RoboRioAccelerometer();
 	//public static final Camera camera = new Camera(CameraMode.THREAD);
-	//public static final AbsoluteEncoder absoluteEncoder = new AbsoluteEncoder();
+	public static final AbsoluteEncoder absoluteEncoder = new AbsoluteEncoder();
 	//public static final VexUltrasonicSensor vexUtrasonicSensor= new VexUltrasonicSensor();
 	//public static MaxBotixRangeFinder maxBotixRangeFinder = new MaxBotixRangeFinder(SensorType.mb1200,RobotMap.MaxBotix_Serial_Port,RobotMap.MaxBotix_Analog_Port);
 	public static final IMUDigitalComboBoard imuDigitalComboBoard = new IMUDigitalComboBoard(I2C.Port.kOnboard, new DigitalInput(RobotMap.gyroInterruptChannel));
+	public static final PidDemo pidDemo = new PidDemo();
 	public static OI oi;
 	//For camera
 	public static int session;

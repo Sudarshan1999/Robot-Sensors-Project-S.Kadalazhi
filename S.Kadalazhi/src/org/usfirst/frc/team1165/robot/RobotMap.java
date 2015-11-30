@@ -28,4 +28,8 @@ public class RobotMap
 	
 	//Gyro Interrupt
 	public static int gyroInterruptChannel = 9;
+	
+	//LED Channel
+	public final static int GREEN_LED_CHANNEL = 0;
+	public final static int RED_LED_CHANNEL = 1;
 }

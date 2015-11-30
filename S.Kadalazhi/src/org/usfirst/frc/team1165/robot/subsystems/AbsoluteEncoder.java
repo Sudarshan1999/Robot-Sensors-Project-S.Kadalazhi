@@ -6,12 +6,13 @@ import org.usfirst.frc.team1165.robot.commands.Reporter;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.ControllerPower;
+import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class AbsoluteEncoder extends ReportableSubsystem
+public class AbsoluteEncoder extends ReportableSubsystem implements PIDSource
 {
 	 AnalogInput analogInput =new AnalogInput(RobotMap.ABSOLUTE_ENCODER_PORT);
 	 AnalogPotentiometer analogPotentiometer = new AnalogPotentiometer(analogInput,360,0);
@@ -28,5 +29,15 @@ public class AbsoluteEncoder extends ReportableSubsystem
 		SmartDashboard.putNumber("ADC Value", analogInput.getValue());
 		SmartDashboard.putNumber("Absolute Encoder Value",analogPotentiometer.get());
 		SmartDashboard.putNumber("5 Volt Rail", ControllerPower.getVoltage5V());
+	}
+
+	@Override
+	public double pidGet()
+	{
+		return analogPotentiometer.get();
+	}
+	public AnalogPotentiometer getPot()
+	{
+		return analogPotentiometer;
 	}
 }
