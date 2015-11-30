@@ -10,10 +10,12 @@ public class SetPidDemoSetpoint extends Command
 	private String setPointKey;
 	public SetPidDemoSetpoint(double setPoint)
 	{
+		requires(Robot.pidDemo);
 		this.setPoint = setPoint;
 	}
 	public SetPidDemoSetpoint(String setPointkey)
 	{
+		requires(Robot.pidDemo);
 		this.setPointKey = setPointkey;
 	}
 	// Called just before this Command runs the first time
@@ -23,7 +25,6 @@ public class SetPidDemoSetpoint extends Command
 		{
 			setPoint = SmartDashboard.getNumber(setPointKey);
 		}
-		requires(Robot.pidDemo);
 		Robot.pidDemo.disable();
 		Robot.pidDemo.setSetpoint(setPoint);
 		Robot.pidDemo.enable();
@@ -37,17 +38,14 @@ public class SetPidDemoSetpoint extends Command
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
-		if (Robot.absoluteEncoder.pidGet() - 5 > setPoint || Robot.absoluteEncoder.pidGet() + 5 < setPoint)
-		{
-			Robot.pidDemo.onTarget();
-			return true;
-		}
-		return false;
+		return Robot.pidDemo.onTarget();
+
 	}
 
 	// Called once after isFinished returns true
 	protected void end()
 	{
+		Robot.pidDemo.disable();
 	}
 
 	// Called when another command which requires one or more of the same
